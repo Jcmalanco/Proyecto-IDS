@@ -1,0 +1,27 @@
+name: Hogar Patitas CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Ejecutar pruebas unitarias
+        run: npm test
+
+      - name: Analizar dependencias
+        run: npm audit --audit-level=high
+        continue-on-error: true
