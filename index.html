@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Encuentra a tu compañero ideal. Adopta, dona y ayuda a refugios de animales.">
+  <title>Hogar Patitas | Adopta con amor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="brand-icon">♥</span><span>Hogar<span class="brand-accent">Patitas</span></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    <nav id="mainNav">
+      <a href="#adopta">Adopta</a><a href="#como-funciona">Cómo funciona</a><a href="#ayuda">Cómo ayudar</a><a href="#refugios">Refugios</a>
+    </nav>
+    <div class="header-actions"><button class="btn btn-outline" id="loginBtn">Iniciar sesión</button><button class="btn btn-primary" id="registerBtn">Regístrate</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="dot"></span> Juntos cambiamos vidas</span>
+        <h1>Un hogar cambia<br>su mundo. <span>Y el tuyo.</span></h1>
+        <p>Miles de patitas esperan una segunda oportunidad. Encuentra a tu nuevo mejor amigo y transforma una vida con amor.</p>
+        <div class="hero-actions"><a class="btn btn-primary btn-large" href="#adopta">Encuentra a tu compañero <span>→</span></a><a class="text-link" href="#como-funciona">Conoce cómo funciona</a></div>
+      </div>
+      <div class="hero-visual">
+        <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1000&q=85" alt="Perro feliz disfrutando al aire libre">
+      </div>
+    </section>
+
+    <section class="trust-strip"><span>Una comunidad que trabaja por ellos</span><div> Refugios locales</div><div> Adopción responsable</div><div> Ayuda comunitaria</div></section>
+
+    <section class="section pets-section" id="adopta">
+      <div class="section-heading"><div><span class="eyebrow">ENCUENTRA A TU MEJOR AMIGO</span><h2>Conoce a quienes buscan <span>un hogar</span></h2><p>Cada uno tiene una historia. ¿Serás parte de su final feliz?</p></div><span class="result-count" id="resultCount">6 compañeros</span></div>
+      <div class="filters">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar por nombre o raza..." aria-label="Buscar mascotas"></label>
+        <select id="speciesFilter" aria-label="Filtrar por especie"><option value="">Todas las especies</option><option value="Perro">Perros</option><option value="Gato">Gatos</option><option value="Otro">Otros</option></select>
+        <select id="ageFilter" aria-label="Filtrar por edad"><option value="">Todas las edades</option><option value="Cachorro">Cachorro</option><option value="Adulto">Adulto</option><option value="Senior">Senior</option></select>
+        <select id="sizeFilter" aria-label="Filtrar por tamaño"><option value="">Todos los tamaños</option><option value="Pequeño">Pequeño</option><option value="Mediano">Mediano</option><option value="Grande">Grande</option></select>
+      </div>
+      <div class="pet-grid" id="petGrid"></div>
+      <div class="empty-state hidden" id="emptyState">No encontramos mascotas con esos filtros. Prueba con otra búsqueda. 🐾</div>
+      <div class="center"><button class="btn btn-outline" id="clearFilters">Limpiar filtros</button></div>
+    </section>
+
+    <section class="how-section" id="como-funciona">
+      <div class="section-heading centered"><div><span class="eyebrow">ADOPTAR ES MÁS FÁCIL DE LO QUE CREES</span><h2>Tu nueva historia comienza <span>aquí</span></h2><p>Te acompañamos en cada paso para que la adopción sea responsable y feliz.</p></div></div>
+      <div class="steps-grid"><article class="step-card"><div class="step-icon peach">⌕</div><span class="step-number">PASO 01</span><h3>Encuentra</h3><p>Explora perfiles, conoce sus historias y encuentra una mascota compatible contigo.</p></article><article class="step-card"><div class="step-icon mint">♡</div><span class="step-number">PASO 02</span><h3>Conecta</h3><p>Envía una solicitud al refugio y cuéntales por qué quieres darle un hogar.</p></article><article class="step-card"><div class="step-icon lilac">⌂</div><span class="step-number">PASO 03</span><h3>Adopta</h3><p>El refugio te contactará para continuar el proceso y preparar su nuevo hogar.</p></article></div>
+    </section>
+
+    <section class="help-section" id="ayuda"><div class="help-copy"><span class="eyebrow light">TODAS LAS PATITAS CUENTAN</span><h2>Hay muchas formas<br>de cambiar una vida.</h2><p>No necesitas adoptar para hacer la diferencia. Tu apoyo ayuda a que los refugios sigan rescatando, cuidando y encontrando hogares.</p><div class="help-buttons"><button class="btn btn-light" id="donateBtn">Quiero donar <span>→</span></button><button class="btn btn-glass" id="volunteerBtn">Ser voluntario</button></div></div><div class="help-image"><img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=85" alt="Perros jugando juntos"></div></section>
+
+    <section class="shelter-section" id="refugios"><div class="section-heading"><div><span class="eyebrow">HÉROES DE CUATRO PATAS</span><h2>Conoce a nuestros <span>refugios aliados</span></h2><p>Organizaciones que cada día hacen posible una segunda oportunidad.</p></div><button class="btn btn-outline" id="shelterBtn">Registrar un refugio +</button></div><div class="shelter-grid" id="shelterGrid"></div></section>
+
+    <section class="newsletter"><div><span class="eyebrow">UNA DOSIS DE TERNURA</span><h2>Historias que merecen llegar a ti.</h2><p>Recibe noticias de adopciones, consejos y formas de ayudar.</p></div><form id="newsletterForm"><input type="email" placeholder="Tu correo electrónico" required aria-label="Correo electrónico"><button class="btn btn-primary" type="submit">Quiero recibirlas</button></form></section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-icon">♥</span><span>Hogar<span class="brand-accent">Patitas</span></span></a><p>Hecho con amor para quienes no tienen voz. 🐾</p><span>© 2026 Hogar Patitas · Proyecto académico</span></footer>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><button class="modal-close" id="modalClose" aria-label="Cerrar">×</button><div id="modalContent"></div></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
