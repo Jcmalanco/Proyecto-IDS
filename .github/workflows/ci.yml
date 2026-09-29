@@ -1,13 +1,23 @@
-name: Hogar Patitas CI
+name: Hogar Patitas CI/CD
 
 on:
   push:
-    branches: [main, develop]
+    branches:
+      - main
+      - develop
+
   pull_request:
-    branches: [main]
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  test-and-security:
+  tests:
+    name: Pruebas unitarias
     runs-on: ubuntu-latest
 
     steps:
@@ -18,10 +28,67 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
-      - name: Ejecutar pruebas unitarias
+      - name: Verificar archivos
+        run: |
+          pwd
+          ls -la
+          test -f package.json
+          test -f script.js
+          test -d tests
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Ejecutar pruebas
         run: npm test
 
-      - name: Analizar dependencias
+  security:
+    name: Analisis de seguridad
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Auditar dependencias
         run: npm audit --audit-level=high
-        continue-on-error: true
+
+  sonar:
+    name: Analisis SonarCloud
+    runs-on: ubuntu-latest
+    needs: tests
+    if: ${{ secrets.SONAR_TOKEN != '' }}
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Analizar codigo
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
